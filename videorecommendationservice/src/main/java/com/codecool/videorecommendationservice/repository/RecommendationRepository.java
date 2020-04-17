@@ -3,10 +3,10 @@ package com.codecool.videorecommendationservice.repository;
 import com.codecool.videorecommendationservice.entity.Recommendation;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
+import java.util.Set;
 
 public interface RecommendationRepository extends JpaRepository<Recommendation, Long> {
 
-    public List<Recommendation> findAllByVideoId(Long videoId);
+    public Set<Recommendation> findAllByVideoId(Long videoId);
 
 }

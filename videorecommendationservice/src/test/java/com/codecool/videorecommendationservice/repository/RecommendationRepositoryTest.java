@@ -8,7 +8,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import java.util.Arrays;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -36,7 +37,7 @@ class RecommendationRepositoryTest {
                 .build();
 
 
-        repo.saveAll(Arrays.asList(test1, test2));
+        repo.saveAll(Stream.of(test1, test2).collect(Collectors.toSet()));
 
         assertThat(repo.findAllByVideoId(1L)).hasSize(1).containsOnly(test1);
     }
