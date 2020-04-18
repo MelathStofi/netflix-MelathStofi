@@ -7,6 +7,7 @@ import com.codecool.videoservice.service.Dao;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,6 +25,13 @@ public class VideoController {
         return dao.getAllVideos();
     }
 
+    @PutMapping("/{videoId}")
+    public HttpStatus updateVideo(@PathVariable Long videoId, @RequestBody VideoWithRecommendations video) {
+        String name = video.getName();
+        String url = video.getUrl();
+        return dao.updateVideoById(videoId, name, url);
+    }
+
     @GetMapping("/{videoId}")
     public VideoWithRecommendations getDetailedPageOfVideo(@PathVariable Long videoId) {
         Video video = dao.getVideoById(videoId);
@@ -37,14 +45,19 @@ public class VideoController {
         );
     }
 
-    @PostMapping("/{videoId}")
-    public void addRecommendation(@PathVariable Long videoId, @RequestBody Recommendation recommendation) {
-        dao.addRecommendationToVideo(videoId, recommendation);
+    @PutMapping("/recommendation/{videoId}")
+    public HttpStatus updateRecommendation(@PathVariable Long videoId, @RequestBody Recommendation recommendation) {
+        return dao.updateRecommendation(videoId, recommendation);
+    }
+
+    @PostMapping("/recommendation/{videoId}")
+    public HttpStatus addRecommendation(@PathVariable Long videoId, @RequestBody Recommendation recommendation) {
+        return dao.addRecommendationToVideo(videoId, recommendation);
     }
 
     @Data
     @AllArgsConstructor
-    private class VideoWithRecommendations {
+    private static class VideoWithRecommendations {
         private Long id;
         private String name;
         private String url;
