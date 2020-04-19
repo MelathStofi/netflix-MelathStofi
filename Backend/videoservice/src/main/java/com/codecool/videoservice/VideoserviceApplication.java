@@ -51,17 +51,17 @@ public class VideoserviceApplication {
 		return args -> {
 			Video video1 = Video.builder()
 					.name("Quick-sort with Hungarian (Küküllőmenti legényes) folk dance")
-					.url("https://www.youtube.com/watch?v=ywWBy6J5gz8")
+					.url("https://www.youtube.com/embed/ywWBy6J5gz8")
 					.build();
 
 			Video video2 = Video.builder()
 					.name("KATICA ILLÉNYI theremin - O sole mio")
-					.url("https://www.youtube.com/watch?v=Nfh6UuJuU-U")
+					.url("https://www.youtube.com/embed/Nfh6UuJuU-U")
 					.build();
 
 			Video video3 = Video.builder()
 					.name("Gheorghe Zamfir - Frunzulita lemn adus (cantec de nunta)")
-					.url("https://www.youtube.com/watch?v=toBhrnObFzE")
+					.url("https://www.youtube.com/embed/toBhrnObFzE")
 					.build();
 
 			repo.saveAll(Arrays.asList(video1, video2, video3));

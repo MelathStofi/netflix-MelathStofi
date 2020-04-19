@@ -52,6 +52,7 @@ public class VideoController {
 
     @PostMapping("/recommendation/{videoId}")
     public HttpStatus addRecommendation(@PathVariable Long videoId, @RequestBody Recommendation recommendation) {
+        System.out.println("=====" + recommendation.toString() + "=====");
         return dao.addRecommendationToVideo(videoId, recommendation);
     }
 
